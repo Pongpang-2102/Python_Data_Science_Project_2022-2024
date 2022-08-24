@@ -28,11 +28,31 @@ select top 2 Ssn ,
 			       Lname , 
 			       Hours
 from EMPLOYEE, WORKS_ON
-order by Hours desc
+order by Hours desc ;
 
 --3. Find the name of Employees who are directly supervised by "Franklin Wong"
 
-select 
+select Fname ,Lname , Ssn 
+from EMPLOYEE
+where Super_ssn = ( 
+                     select Ssn 
+                     from EMPLOYEE
+                     where Fname = 'Franklin'  and Lname = 'Wong'   ) ;
+		    
+-- 4.  Who is the manager of Research Department ?
+
+select distinct(Fname) , 
+       Lname,
+       ssn
+from DEPARTMENT , EMPLOYEE
+where ssn = ( 
+                select Mgr_ssn
+                from DEPARTMENT
+                where Dname = 'Research' ) ;
+		
+-- 5. List the names of All Employees who have salary more than theire supervisor
+
+      
 
                  
        
