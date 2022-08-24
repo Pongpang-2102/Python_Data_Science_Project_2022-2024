@@ -19,14 +19,14 @@ from EMPLOYEE , WORKS_ON , PROJECT
 where Essn = Ssn and Pno = Pnumber
                  and dnum = 5
                  and Pname = 'ProductX'
-				         and Hours > 10 ;
+		 and Hours > 10 ;
                 
 -- 2. List top 2 employee (ssn) who work the most hours across the projects
 
 select top 2 Ssn ,
              Fname, 
-			       Lname , 
-			       Hours
+	     Lname , 
+	     Hours
 from EMPLOYEE, WORKS_ON
 order by Hours desc ;
 
@@ -52,6 +52,14 @@ where ssn = (
 		
 -- 5. List the names of All Employees who have salary more than theire supervisor
 
+SELECT em1.Fname + ' ' + em1.Lname   AS 'employee_name'
+     , em1.Salary                    AS 'employee_salary'
+     , em2.Fname + ' ' + em2.Lname   AS 'supervisor_name'
+     , em2.Salary                    AS 'supervisor_salary'
+FROM EMPLOYEE em1,
+     EMPLOYEE em2
+WHERE em1.Super_Ssn = em2.ssn
+  AND em1.SALARY    > em2.SALARY
       
 
                  
